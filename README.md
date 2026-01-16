@@ -1,99 +1,176 @@
-Name: Cheitanya Gola
-Task: Multi-Level Image Classification Challenge
-Dataset: CIFAR-10
-_________________________________________
-Project Overview
-This project demonstrates a progressive, level-wise approach to image classification using deep learning. Starting from a transfer-learning baseline, the system is incrementally improved through data augmentation, learning-rate scheduling, attention mechanisms, and finally expert-level ensemble learning.
-Each level introduces a meaningful architectural or training enhancement, supported by quantitative results and qualitative analysis.
-________________________________________
-Problem Statement
-Build a robust image classification system for the CIFAR-10 dataset with increasing model sophistication across multiple levels, aiming to achieve expert-level performance while maintaining interpretability and reproducibility.
-________________________________________
-Dataset
-•	Name: CIFAR-10
-•	Images: 60,000 RGB images (32×32)
-•	Classes (10):
-o	airplane, automobile, bird, cat, deer
-o	dog, frog, horse, ship, truck
-•	Split:
-o	Training: 50,000
-o	Test: 10,000
-Custom Split Used:
-• Training: 40,000 images
-• Validation: 10,000 images
-• Test: 10,000 images
-________________________________________
-Methodology & Results
- Level 1 — Baseline Transfer Learning
-•	Model: ResNet-18
-•	Technique: Transfer learning
-•	Accuracy: 90.63%
-•	Key Insight: Strong baseline using pretrained features
-________________________________________
- Level 2 — Augmentation & Optimization
-•	Enhancements:
-o	Data augmentation
-o	Learning-rate scheduling
-o	Improved regularization
-•	Model: ResNet-18
-•	Accuracy: 93.08%
-•	Key Insight: Augmentation significantly improves generalization
-________________________________________
- Level 3 — Attention Mechanism
-•	Model: SE-ResNet-18
-•	Technique: Squeeze-and-Excitation channel attention
-•	Accuracy: 94.35%
-•	Key Insight: Channel-wise attention improves feature discrimination
-________________________________________
- Level 4 — Expert Techniques (Ensemble Learning)
-•	Models Used:
-o	ResNet-18 (Level-2)
-o	SE-ResNet-18 (Level-3)
-o	ResNet-34
-•	Ensemble Strategy: Soft voting (probability averaging)
-•	Final Accuracy: 94.72%
-Why Ensemble?
-•	Reduces model-specific biases
-•	Improves stability and robustness
-•	Preserves confidence information via soft voting
-________________________________________
-Performance Summary
-Level	Technique	Accuracy
-1	Transfer Learning	90.63%
-2	Augmentation + Scheduler	93.08%
-3	SE Attention	94.35%
-4	Ensemble (Soft Voting)	94.72%
-________________________________________
-Analysis & Visualizations
-•	Per-class accuracy analysis
-•	Confusion matrices
-•	Error patterns observed in visually similar classes (cat/dog, bird/deer)
-•	Ensemble reduces misclassification across difficult categories
-________________________________________
-Reproducibility
-•	Fixed random seeds
-•	No hardcoded system-specific paths
-•	All experiments executed on Google Colab
-•	Models saved and reused for ensemble inference
-________________________________________
-Google Colab Notebooks
-•	Level 1: Baseline Model
-•	Level 2: Augmentation & Optimization
-•	Level 3: SE Attention
-•	Level 4: Ensemble Learning
-(Public Colab links included in the submission document)
-________________________________________
-Limitations & Future Work
-Limitations
-•	Higher inference cost due to ensemble
-•	Increased memory usage
-Future Extensions
-•	Weighted ensemble strategies
-•	Knowledge distillation
-•	Robustness testing (noise / adversarial data)
-•	Snapshot ensembles
-________________________________________
-Final Conclusion
-This project demonstrates a structured and scalable progression from baseline modeling to expert-level ensemble systems. Each enhancement is justified, measurable, and aligned with real-world machine learning practices.
-The final ensemble achieves 94.72% accuracy, meeting expert-level expectations and showcasing strong modeling intuition, experimental discipline, and analytical depth.
+**Multi-Level Image Classification Challenge**
 
+Name: Cheitanya Gola
+Dataset: CIFAR-10
+
+___________________________________________________________________
+
+**Project Overview**
+
+This project follows a level-wise approach to image classification, where the model is gradually improved through architectural and training enhancements. Starting with a transfer-learning baseline, successive levels introduce data augmentation, optimization techniques, attention mechanisms, and finally ensemble learning.
+
+The goal was not only to improve accuracy but also to understand how each modification affects model behavior and performance.
+
+___________________________________________________________________
+
+**Problem Statement**
+
+The objective is to build a reliable image classification system for the CIFAR-10 dataset, improving performance step by step while keeping the experiments reproducible and the results interpretable.
+
+___________________________________________________________________
+
+**Dataset**
+
+Dataset: CIFAR-10
+Total Images: 60,000 RGB images (32 × 32)
+Classes:
+airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck
+
+___________________________________________________________________
+
+**Dataset Split**
+
+Original training set: 50,000 images
+
+Test set: 10,000 images
+
+Split Used in This Project
+
+Training: 40,000 images
+
+Validation: 10,000 images
+
+Test: 10,000 images
+
+A separate validation set was created from the training data to monitor performance and avoid overfitting.
+
+___________________________________________________________________
+
+**Methodology and Results**
+
+Level 1 — Transfer Learning Baseline
+
+Model: ResNet-18
+
+Approach: Transfer learning using pretrained weights
+
+Test Accuracy: 90.63%
+
+This level establishes a strong baseline by leveraging pretrained features, which perform well even with minimal tuning.
+
+Level 2 — Data Augmentation and Optimization
+
+Improvements Introduced:
+
+Random cropping and horizontal flipping
+
+Learning-rate scheduling
+
+Better regularization
+
+Model: ResNet-18
+
+Test Accuracy: 93.08%
+
+Data augmentation significantly improved generalization and reduced overfitting compared to the baseline model.
+
+Level 3 — Channel Attention
+
+Model: SE-ResNet-18
+
+Technique: Squeeze-and-Excitation blocks
+
+Test Accuracy: 94.35%
+
+Adding channel-wise attention helped the network focus on more informative features, leading to consistent gains across most classes.
+
+Level 4 — Ensemble Learning
+
+Models Combined:
+
+ResNet-18 (Level 2)
+
+SE-ResNet-18 (Level 3)
+
+ResNet-34
+
+Method: Soft voting using averaged class probabilities
+
+**Final Accuracy: 94.72%**
+
+The ensemble reduces individual model biases and improves stability, especially on visually similar classes.
+
+___________________________________________________________________
+
+**Performance Summary**
+
+Level,    	Technique,	                 Accuracy
+
+1,	     Transfer Learning,              	90.63%
+
+2,	     Augmentation & Scheduling,      	93.08%
+
+3,	     SE Attention,	                   94.35%
+
+4,	     Ensemble (Soft Voting),         	94.72%
+
+___________________________________________________________________
+
+**Analysis and Observations**
+
+Confusion matrices show fewer errors between vehicle classes in higher levels
+
+Classes such as cat and dog remain challenging, but ensemble learning reduces misclassification
+
+Attention and ensemble methods complement each other well
+
+___________________________________________________________________
+
+**Reproducibility**
+
+Fixed random seeds were used
+
+Experiments were run on Google Colab
+
+Trained models were saved and reused for ensemble inference
+
+No system-specific paths were hardcoded
+
+___________________________________________________________________
+
+**Colab Notebooks**
+
+Separate notebooks were maintained for each level:
+
+Level 1: Baseline model : https://colab.research.google.com/drive/1h3g1Jpm01ec6sVbNl4_uOJElTL7Ck9i2?usp=sharing
+
+Level 2: Augmentation and optimization : https://colab.research.google.com/drive/1mHSTYNe-_IfQtwMauUqSu-Q2CXIhHrx_?usp=sharing
+
+Level 3: Attention-based model : https://colab.research.google.com/drive/14NF2WKDSaSxABlQ6b8kBUJIdR--dratj?usp=sharing
+
+Level 4: Ensemble learning : https://colab.research.google.com/drive/1jNy-UoS0N5bcgZO1IlwLfJ6Vm7076s26?usp=sharing
+
+___________________________________________________________________
+
+**Limitations and Future Scope**
+
+**Current Limitations**
+
+Higher inference time due to multiple models
+
+Increased memory usage
+
+**Possible Extensions**
+
+Weighted ensemble based on validation performance
+
+Knowledge distillation to compress the ensemble
+
+Robustness testing under noise or adversarial conditions
+
+
+**Final Remarks**
+
+This project demonstrates a clear progression from a simple baseline to an expert-level ensemble system. Each improvement was guided by experimentation and analysis rather than trial-and-error.
+
+The final ensemble model achieves 94.72% accuracy, meeting the expected expert-level threshold and reflecting a strong understanding of modern deep learning practices.
